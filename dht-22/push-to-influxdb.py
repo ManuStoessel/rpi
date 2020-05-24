@@ -37,8 +37,7 @@ try:
     temp = influxdb_client.Point("dht-22").tag("rpi", "home", "dht-22").field("temperature", temperature_c)
     humid = influxdb_client.Point("dht-22").tag("rpi", "home", "dht-22").field("humidity", humidity)
 
-    write_api.write(bucket=bucket, org=org, record=temp)
-    write_api.write(bucket=bucket, org=org, record=humid)
+    write_api.write(bucket=bucket, record=[temp, humid])
 
 except InfluxDBClientError as error:
     print(error.args[0])
