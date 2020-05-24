@@ -31,7 +31,7 @@ except RuntimeError as error:
     sys.exit(1)
 
 try:
-    client = influxdb_client.from_env_properties()
+    client = influxdb_client.InfluxDBClient.from_env_properties()
     write_api = client.write_api(write_options=SYNCHRONOUS)
 
     temp = influxdb_client.Point("dht-22").tag("rpi", "home", "dht-22").field("temperature", temperature_c)
